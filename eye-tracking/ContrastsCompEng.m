@@ -27,7 +27,7 @@ counterbalancelist = input('Enter List Number (1 or 2): ');
 blocknum = input('Enter Block Number (1 or 2): ');
 
 if blocknum == 2
-    if ~exist(['output/Contrasts_Tsim' subject '.mat'],'file')
+    if ~exist(['output/Contrasts_Eng' subject '.mat'],'file')
         error('There is no block 1 for this participant.');
     end
 end
@@ -44,7 +44,7 @@ end
 pics_dir = 'Stimuli/'; %The location of the picture files to be used in the experiment
 
 audio_version = 'MP3'; % choose MP3 or WAV
-sounds_dir = ['TsimaneRecordings/' audio_version '/']; %The location where the audio files are stored.
+sounds_dir = ['EnglishRecordings/' audio_version '/']; %The location where the audio files are stored.
 
 %% Generate path to GP3 subfolders
 [mainDir,~,~] = fileparts(mfilename('fullpath'));
@@ -148,14 +148,14 @@ if blocknum == 1
     design_array(:,10) = TrialList.Distractor(trialOrder); 
     design_array(:,11) = TrialList.audio(trialOrder); 
     
-    save(['output/Contrasts_Tsim' subject '.mat'],'design_array');
+    save(['output/Contrasts_Eng' subject '.mat'],'design_array');
 
 else
     blockStart = 61;
     blockEnd = 120;
     
-    % load design_array created during block 1
-    load(['output/Contrasts_Tsim' subject '.mat']);
+    % load design_array created during block 1clearmode
+    load(['output/Contrasts_Eng' subject '.mat']);
     
 end
  
@@ -212,7 +212,7 @@ if dum == 0
     session1_client = ConnectToGP3;
 
 %% Spawn a second Matlab session2 that records GP3 data to output file
-    outputFileName = ['EToutput/contrasts_tsim' subject '_b' num2str(blocknum) '_' srand '.txt'];
+    outputFileName = ['EToutput/contrasts_eng' subject '_b' num2str(blocknum) '_' srand '.txt'];
     ExecuteRecordGP3Data(session1_client,outputFileName,...
         'ENABLE_SEND_POG_BEST','ENABLE_SEND_POG_LEFT','ENABLE_SEND_BLINK');
    % StartCalibration(session1_client,10); TURNED OFF THIS CALIBRATION IN
